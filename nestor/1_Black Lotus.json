@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "Black Lotus",
+  "manaCost": 100,
+  "color": "Black",
+  "type": "Creature",
+  "rarity": "Mythic",
+  "rulesText": "Tap: Sacrifice Black Lotus. Add three mana of any one color.",
+  "marketValue": 20000,
+  "powerAndToughness": [99, 88]
+}
