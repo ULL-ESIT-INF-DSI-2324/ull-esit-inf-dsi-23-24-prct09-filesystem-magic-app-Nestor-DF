@@ -2,6 +2,7 @@
 
 - Néstor Delgado Feliciano ([alu0101488998@ull.edu.es](mailto:alu0101488998@ull.edu.es))
 
+[![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-Nestor-DF/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct09-filesystem-magic-app-Nestor-DF?branch=main)
 
 
 

@@ -35,7 +35,7 @@ yargs(hideBin(process.argv))
       },
     },
     (argv) => {
-      console.log(argv.id);
+      console.log(chalk.blue(argv.id));
     },
   )
   .help().argv;
