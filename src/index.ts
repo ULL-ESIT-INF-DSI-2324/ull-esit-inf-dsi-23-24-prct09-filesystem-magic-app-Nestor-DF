@@ -20,6 +20,9 @@ log(chalk.green('I am a green line ' + chalk.blue.underline.bold('with a blue su
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
+/**
+ * yargs
+ */
 yargs(hideBin(process.argv))
   .command(
     'add',
