@@ -62,6 +62,9 @@ export class MagiCard {
       this.powerAndToughness = powerAndToughness;
     } else if (type === Type.Planeswalker) {
       this.loyaltyMarks = loyaltyMarks;
+    } else {
+      this.powerAndToughness = undefined;
+      this.loyaltyMarks = undefined;
     }
   }
 
