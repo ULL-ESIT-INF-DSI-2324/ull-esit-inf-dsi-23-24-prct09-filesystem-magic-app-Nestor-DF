@@ -38,28 +38,17 @@ export enum Rarity {
  * Definition of the Card class
  */
 export class MagiCard {
-  id: number;
-  name: string;
-  manaCost: number;
-  color: Color;
-  type: Type;
-  rarity: Rarity;
-  rulesText: string;
-  marketValue: number;
-  powerAndToughness?: [number, number];
-  loyaltyMarks?: number;
-
   constructor(
-    id: number,
-    name: string,
-    manaCost: number,
-    color: Color,
-    type: Type,
-    rarity: Rarity,
-    rulesText: string,
-    marketValue: number,
-    powerAndToughness?: [number, number],
-    loyaltyMarks?: number,
+    private id: number,
+    private name: string,
+    private manaCost: number,
+    private color: Color,
+    private type: Type,
+    private rarity: Rarity,
+    private rulesText: string,
+    private marketValue: number,
+    private powerAndToughness?: [number, number],
+    private loyaltyMarks?: number,
   ) {
     this.id = id;
     this.name = name;
@@ -74,5 +63,45 @@ export class MagiCard {
     } else if (type === Type.Planeswalker) {
       this.loyaltyMarks = loyaltyMarks;
     }
+  }
+
+  public getId(): number {
+    return this.id;
+  }
+
+  public getName(): string {
+    return this.name;
+  }
+
+  public getManaCost(): number {
+    return this.manaCost;
+  }
+
+  public getColor(): Color {
+    return this.color;
+  }
+
+  public getType(): Type {
+    return this.type;
+  }
+
+  public getRarity(): Rarity {
+    return this.rarity;
+  }
+
+  public getRulesText(): string {
+    return this.rulesText;
+  }
+
+  public getMarketValue(): number {
+    return this.marketValue;
+  }
+
+  public getPowerAndToughness(): [number, number] | undefined {
+    return this.powerAndToughness;
+  }
+
+  public getLoyaltyMarks(): number | undefined {
+    return this.loyaltyMarks;
   }
 }
