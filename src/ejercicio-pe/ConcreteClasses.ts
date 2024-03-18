@@ -16,6 +16,14 @@ export class FilterMapAddReduce extends FilterMapReduceTemplate {
     }
     return acc;
   }
+
+  /**
+   * Method to show the result after Filter
+   * @param arr Array to show
+   */
+  protected showStateAfterFilter(arr: number[]): void {
+    console.log('I am a hook method, this is the result after filtering: ', arr);
+  }
 }
 
 /**
@@ -64,8 +72,8 @@ export class FilterMapDivReduce extends FilterMapReduceTemplate {
    * @returns The result of the division operation.
    */
   reduce(list: number[]): number {
-    let acc = 0;
-    for (let i = 0; i < list.length; ++i) {
+    let acc = list[0];
+    for (let i = 1; i < list.length; ++i) {
       acc /= list[i];
     }
     return acc;
