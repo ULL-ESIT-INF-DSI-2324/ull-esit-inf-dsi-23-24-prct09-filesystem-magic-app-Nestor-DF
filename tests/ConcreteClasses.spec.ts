@@ -40,6 +40,17 @@ describe('FilterMapAddReduce', () => {
       ),
     ).to.be.equal(10);
   });
+
+  it('FilterMapReduce add 4', () => {
+    const filterMapAddReduce: FilterMapAddReduce = new FilterMapAddReduce();
+    expect(
+      filterMapAddReduce.run(
+        [1, 2, 3, 4, 5],
+        (a) => a % 2 != 0,
+        (b) => b - 2,
+      ),
+    ).to.be.equal(3);
+  });
 });
 
 describe('FilterMapSubReduce', () => {
@@ -74,6 +85,17 @@ describe('FilterMapSubReduce', () => {
         (b) => b + 1,
       ),
     ).to.be.equal(-12);
+  });
+
+  it('FilterMapReduce sub 4', () => {
+    const filterMapSubReduce: FilterMapSubReduce = new FilterMapSubReduce();
+    expect(
+      filterMapSubReduce.run(
+        [1, 2, 3, 4, 5],
+        (a) => a % 2 == 0,
+        (b) => b + 1,
+      ),
+    ).to.be.equal(-8);
   });
 });
 
@@ -110,6 +132,17 @@ describe('FilterMapProdReduce', () => {
       ),
     ).to.be.equal(3);
   });
+
+  it('FilterMapReduce prod 4', () => {
+    const filterMapProdReduce: FilterMapProdReduce = new FilterMapProdReduce();
+    expect(
+      filterMapProdReduce.run(
+        [-3, 2, 8],
+        (a) => a + 1 == 3,
+        (b) => b + 5,
+      ),
+    ).to.be.equal(7);
+  });
 });
 
 describe('FilterMapDivReduce', () => {
@@ -144,5 +177,16 @@ describe('FilterMapDivReduce', () => {
         (b) => b / 2,
       ),
     ).to.be.equal(10);
+  });
+
+  it('FilterMapReduce div 4', () => {
+    const filterMapDivReduce: FilterMapDivReduce = new FilterMapDivReduce();
+    expect(
+      filterMapDivReduce.run(
+        [-3, 100, 10],
+        (a) => a % 2 != 0,
+        (b) => b ** 2,
+      ),
+    ).to.be.equal(9);
   });
 });
