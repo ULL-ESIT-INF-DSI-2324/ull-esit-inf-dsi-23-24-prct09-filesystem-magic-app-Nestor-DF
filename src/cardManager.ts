@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import fs from 'fs';
 import { MagiCard } from './magiCard.js';
+import { Color } from './magiCard.js';
 
 /**
  * Class to manage the card collection
@@ -22,7 +23,7 @@ class CardManager {
   }
 
   /**
-   * Method to add a card to the collection of a user
+   * Method to add a card to the collection of an user
    * @param user The user to add the card to
    * @param card The card to add
    */
@@ -43,7 +44,7 @@ class CardManager {
   }
 
   /**
-   * Method to modify a card in the collection of a user
+   * Method to modify a card in the collection of an user
    * @param user The user to modify the card for
    * @param card The card to modify
    */
@@ -59,7 +60,7 @@ class CardManager {
   }
 
   /**
-   * Method to remove a card in the collection of a user
+   * Method to remove a card in the collection of an user
    * @param user The user to remove the card for
    * @param card The card to remove
    */
@@ -69,6 +70,48 @@ class CardManager {
     if (fs.existsSync(cardFilePath)) {
       fs.unlinkSync(cardFilePath);
       console.log(chalk.green.bold(`Card removed in ${user}'s collection`));
+    } else {
+      console.log(chalk.red.bold(`Card not found at ${user}'s collection`));
+    }
+  }
+
+  /**
+   * Method to show a card in the collection of an user
+   * @param user The user to show the card for
+   * @param card The card to show
+   */
+  public showCard(user: string, cardID: number): void {
+    const cardFilePath = `./${user}/${cardID}.json`;
+
+    if (fs.existsSync(cardFilePath)) {
+      const content = fs.readFileSync(cardFilePath).toString();
+      const JSONcontent = JSON.parse(fs.readFileSync(cardFilePath).toString());
+      switch (JSONcontent.color) {
+        case Color.White:
+          console.log(chalk.white.bold(content));
+          break;
+        case Color.Blue:
+          console.log(chalk.blue.bold(content));
+          break;
+        case Color.Black:
+          console.log(chalk.black.bold(content));
+          break;
+        case Color.Red:
+          console.log(chalk.red.bold(content));
+          break;
+        case Color.Green:
+          console.log(chalk.green.bold(content));
+          break;
+        case Color.Colorless:
+          console.log(chalk.gray.bold(content));
+          break;
+        case Color.Multicolor:
+          console.log(chalk.magenta.bold.bgBlue(content));
+          break;
+        default:
+          console.log(chalk.red.bold('Unknown color'));
+          break;
+      }
     } else {
       console.log(chalk.red.bold(`Card not found at ${user}'s collection`));
     }

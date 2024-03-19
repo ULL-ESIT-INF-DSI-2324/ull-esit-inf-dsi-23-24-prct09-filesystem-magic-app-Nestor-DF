@@ -1,10 +1,7 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { MagiCard } from './magiCard.js';
 import cardManager from './cardManager.js';
-import { Color } from './magiCard.js';
-import { Type } from './magiCard.js';
-import { Rarity } from './magiCard.js';
+import { MagiCard, Color, Type, Rarity } from './magiCard.js';
 
 /**
  * Command line interface for the Magic app that adds a card to the collection
@@ -60,7 +57,6 @@ yargs(hideBin(process.argv))
       powerToughness: {
         description: 'Power and Toughness of the card (for Creatures)',
         type: 'array',
-        demandOption: true,
         coerce: (arg) => arg.map(Number),
       },
       loyalty: {
@@ -74,6 +70,12 @@ yargs(hideBin(process.argv))
       },
     },
     (argv) => {
+      if (argv.cardType === 'Creature' && argv.powerToughness === undefined) {
+        throw new Error('Creatures needs the powerToughness attribute');
+      }
+      if (argv.cardType === 'Planeswalker' && argv.loyalty === undefined) {
+        throw new Error('Planeswalker needs the loyalty attribute');
+      }
       const cardData: MagiCard = new MagiCard(
         argv.id,
         argv.name,
@@ -145,7 +147,6 @@ yargs(hideBin(process.argv))
       powerToughness: {
         description: 'Power and Toughness of the card (for Creatures)',
         type: 'array',
-        demandOption: true,
         coerce: (arg) => arg.map(Number),
       },
       loyalty: {
@@ -159,6 +160,12 @@ yargs(hideBin(process.argv))
       },
     },
     (argv) => {
+      if (argv.cardType === 'Creature' && argv.powerToughness === undefined) {
+        throw new Error('Creatures needs the powerToughness attribute');
+      }
+      if (argv.cardType === 'Planeswalker' && argv.loyalty === undefined) {
+        throw new Error('Planeswalker needs the loyalty attribute');
+      }
       const cardData: MagiCard = new MagiCard(
         argv.id,
         argv.name,
@@ -197,6 +204,31 @@ yargs(hideBin(process.argv))
     },
     (argv) => {
       cardManager.removeCard(argv.user, argv.id);
+    },
+  )
+  .help().argv;
+
+/**
+ * Command line interface for the Magic app that show a card of the collection
+ */
+yargs(hideBin(process.argv))
+  .command(
+    'show',
+    'Show a card of the collection',
+    {
+      user: {
+        description: 'user name',
+        type: 'string',
+        demandOption: true,
+      },
+      id: {
+        description: 'Card ID',
+        type: 'number',
+        demandOption: true,
+      },
+    },
+    (argv) => {
+      cardManager.showCard(argv.user, argv.id);
     },
   )
   .help().argv;
