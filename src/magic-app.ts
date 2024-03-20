@@ -1,7 +1,7 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import cardManager from './cardManager.js';
-import { MagiCard, Color, Type, Rarity } from './magiCard.js';
+import cardManager from './CardManager.js';
+import { MagiCard, Color, Type, Rarity } from './MagiCard.js';
 
 /**
  * Command line interface for the Magic app that adds a card to the collection
