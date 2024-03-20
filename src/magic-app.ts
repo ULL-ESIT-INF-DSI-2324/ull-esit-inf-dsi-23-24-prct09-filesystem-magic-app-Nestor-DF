@@ -232,3 +232,23 @@ yargs(hideBin(process.argv))
     },
   )
   .help().argv;
+
+/**
+ * Command line interface for the Magic app that list the collection
+ */
+yargs(hideBin(process.argv))
+  .command(
+    'list',
+    'List the collection',
+    {
+      user: {
+        description: 'user name',
+        type: 'string',
+        demandOption: true,
+      },
+    },
+    (argv) => {
+      cardManager.listCollection(argv.user);
+    },
+  )
+  .help().argv;
