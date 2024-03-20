@@ -6,7 +6,7 @@ import { Color } from './MagiCard.js';
 /**
  * Class to manage the card collection
  */
-class CardManager {
+export class CardManager {
   private static instance: CardManager;
 
   private constructor() {}
@@ -62,7 +62,7 @@ class CardManager {
   /**
    * Method to remove a card in the collection of an user
    * @param user The user to remove the card for
-   * @param card The card to remove
+   * @param cardID The card to remove
    */
   public removeCard(user: string, cardID: number): void {
     const cardFilePath = `./data/${user}/${cardID}.json`;
@@ -78,7 +78,7 @@ class CardManager {
   /**
    * Method to show a card in the collection of an user
    * @param user The user to show the card for
-   * @param card The card to show
+   * @param cardID The card to show
    */
   public showCard(user: string, cardID: number): void {
     const cardFilePath = `./data/${user}/${cardID}.json`;
@@ -169,8 +169,3 @@ class CardManager {
     }
   }
 }
-
-/**
- * Singleton instance of the CardManager
- */
-export default CardManager.getInstance();
