@@ -1,6 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
-import { MagiCard, Color, Type, Rarity } from '../src/magiCard.js';
+import { MagiCard, Color, Type, Rarity } from '../src/MagiCard.js';
 
 describe('MagiCard', () => {
   it('should create a new MagiCard instance', () => {

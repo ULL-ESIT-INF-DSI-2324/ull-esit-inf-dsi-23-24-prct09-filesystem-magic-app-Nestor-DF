@@ -5,7 +5,7 @@ import {
   FilterMapSubReduce,
   FilterMapProdReduce,
   FilterMapDivReduce,
-} from '../src/ejercicio-pe/ConcreteClasses.js';
+} from '../../src/ejercicio-pe/ConcreteClasses.js';
 
 describe('FilterMapAddReduce', () => {
   it('FilterMapReduce add 1', () => {

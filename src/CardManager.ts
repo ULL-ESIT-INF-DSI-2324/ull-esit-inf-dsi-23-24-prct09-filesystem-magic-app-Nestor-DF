@@ -170,4 +170,7 @@ class CardManager {
   }
 }
 
+/**
+ * Singleton instance of the CardManager
+ */
 export default CardManager.getInstance();
