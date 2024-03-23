@@ -14,6 +14,7 @@
   - [**Índice**](#índice)
   - [**Introducción**](#introducción)
   - [**Desarrollo**](#desarrollo)
+  - [**Ejercicio PE**](#ejercicio-pe)
   - [**Conclusiones**](#conclusiones)
   - [**Recursos Empleados**](#recursos-empleados)
 
@@ -361,6 +362,94 @@ data
         ├── 1.json
         └── 9.json
   .....
+```
+
+
+
+
+## **Ejercicio PE**
+Primero creé la clase "plantilla" **FilterMapReduceTemplate** con su método run que hace uso de los métodos "plantillas" de los cuales podemos diferenciar *filter* y *map* que están implementados, *reduce* que es abstracto para obligar a implementarlo en las subclases y los métodos *showStateAfterFilter* y *showStateAfterMap* vacíos ya que su implementación es opcional. Se destaca como todos lo métodos son protected para que puedan ser usados en las clases hijas.
+```ts
+export abstract class FilterMapReduceTemplate {
+  public run(list: number[], predicate: (num: number) => boolean, transform: (num: number) => number): number {
+    const filteredList = this.filter(list, predicate);
+    this.showStateAfterFilter(filteredList);
+    const mappedList = this.map(filteredList, transform);
+    this.showStateAfterMap(mappedList);
+    const reducedResult = this.reduce(mappedList);
+    return reducedResult;
+  }
+
+  protected filter(list: number[], predicate: (num: number) => boolean): number[] {
+    const filteredList: number[] = [];
+    for (const num of list) {
+      if (predicate(num)) {
+        filteredList.push(num);
+      }
+    }
+    return filteredList;
+  }
+
+  protected map(list: number[], transform: (num: number) => number): number[] {
+    const mappedList: number[] = [];
+    for (const num of list) {
+      mappedList.push(transform(num));
+    }
+    return mappedList;
+  }
+
+  protected abstract reduce(list: number[]): number;
+
+  protected showStateAfterFilter(arr: number[]) {}
+
+  protected showStateAfterMap(arr: number[]) {}
+}
+```
+
+Después, implementé las clases hijas específicas que heredan de esta clase "plantilla" implementando el método obligatorio *reduce* y en una de ellas un método opcional o *hook*.
+```ts
+export class FilterMapAddReduce extends FilterMapReduceTemplate {
+  reduce(list: number[]): number {
+    let acc = 0;
+    for (let i = 0; i < list.length; ++i) {
+      acc += list[i];
+    }
+    return acc;
+  }
+  protected showStateAfterFilter(arr: number[]): void {
+    console.log('I am a hook method, this is the result after filtering: ', arr);
+  }
+}
+
+export class FilterMapSubReduce extends FilterMapReduceTemplate {
+  reduce(list: number[]): number {
+    let acc = 0;
+    for (let i = 0; i < list.length; ++i) {
+      acc -= list[i];
+    }
+    return acc;
+  }
+}
+
+export class FilterMapProdReduce extends FilterMapReduceTemplate {
+  reduce(list: number[]): number {
+    let acc = 1;
+    for (let i = 0; i < list.length; ++i) {
+      acc *= list[i];
+    }
+    return acc;
+  }
+}
+
+export class FilterMapDivReduce extends FilterMapReduceTemplate {
+  reduce(list: number[]): number {
+    let acc = list[0];
+    for (let i = 1; i < list.length; ++i) {
+      acc /= list[i];
+    }
+    return acc;
+  }
+}
 ```
 
 
